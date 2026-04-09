@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Dashboard</title>
+
+  <!-- Firebase CDN -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+
+<body style="font-family: Arial; text-align: center; margin-top: 50px;">
+
+  <h2>Employee Dashboard</h2>
+
+  <p><strong>Email:</strong> <span id="userEmail"></span></p>
+
+  <h3>Your Details</h3>
+  <p>Working Hours: <span id="hours"></span></p>
+  <p>Pay Per Hour: <span id="rate"></span></p>
+  <p><strong>Salary: <span id="salary"></span></strong></p>
+
+  <button onclick="logout()">Logout</button>
+
+  <script src="app.js"></script>
+
+  <script>
+    // Display logged-in user
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        document.getElementById("userEmail").innerText = user.email;
+
+        // Fetch data from Firestore
+        firebase.firestore().collection("employees").doc(user.email).get()
+          .then(doc => {
+            if (doc.exists) {
+              const data = doc.data();
+              document.getElementById("hours").innerText = data.hours;
+              document.getElementById("rate").innerText = data.rate;
+              document.getElementById("salary").innerText = data.salary;
+            } else {
+              alert("No data found for this user");
+            }
+          });
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        window.location.href = "index.html";
+      });
+    }
+  </script>
+
+</body>
+</html>
