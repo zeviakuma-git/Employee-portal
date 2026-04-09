@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Employee Login</title>
+
+  <!-- Firebase v8 CDN (ONLY ONCE) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+</head>
+
+<body style="font-family: Arial; background: #f4f6f9; margin: 0;">
+
+  <div style="max-width: 800px; margin: auto; padding: 20px;">
+
+    <h2 style="text-align:center;">Employee Dashboard</h2>
+
+    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+      <p><strong>Email:</strong> <span id="userEmail"></span></p>
+    </div>
+
+    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+
+      <div style="flex:1; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <h3>Working Hours</h3>
+        <p id="hours"></p>
+      </div>
+
+      <div style="flex:1; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <h3>Pay Per Hour</h3>
+        <p id="rate"></p>
+      </div>
+
+      <div style="flex:1; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <h3>Salary</h3>
+        <p id="salary"></p>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top: 30px;">
+      <button onclick="logout()" style="padding:10px 20px; border:none; background:red; color:white; border-radius:5px; cursor:pointer;">
+        Logout
+      </button>
+    </div>
+
+  </div>
+
+</html>
